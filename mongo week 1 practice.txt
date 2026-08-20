@@ -1,0 +1,90 @@
+Section A
+
+1. Insert a new student document with your name, age, department, marks, and city
+ db.students.find({name:"Pavan",age:21,dept:"CSE",marks:87,city:"Visakhapatnam"})
+
+2.  Display all students in the collection
+
+db.students.find()
+
+3. Display all students belonging to the CSE department
+
+db.students.find({dept:"CSE"})
+
+4. Display all students whose city is Hyderabad
+
+db.students.find({city:"Hyderabad"})
+
+5. Find the student named Pavan.
+
+db.students.find({name:"Pavan"})
+
+Section B
+
+6. Find all students whose marks are greater than 80.
+
+db.students.find({marks:{$gt:80}})
+
+7. Find students whose age is greater than 20 and less than 23.
+
+db.students.find({age:{$gt:20,$lt:23})
+
+8. Find students who belong to CSE and are from Hyderabad.
+
+db.students.find({$and:[{dept:"CSE"},{city:"Hyderabad"}]})
+
+9. Display only student name and marks. Do not display _id.
+
+db.students.find({},{name:1,marks:1,_id:0})
+
+10. Find students belonging to either CSE or ECE.
+
+db.students.find({$or:[{dept:"CSE"},{dept:"ECE"}]})
+
+Section C
+
+11. Find students who have Python as one of their skills.
+
+db.students.find({skills:"Python"})
+
+12. Find students who have both Python and SQL in their skills.
+
+db.students.find({$and:[{skills:"Python",skills:"SQL"}]})
+
+13. Find students whose paid fees are less than 40,000 using fees_paid.
+
+db.students.find({fees_paid:{$lt:40000}})
+
+14. Display the top 3 students based on marks, highest to lowest.
+
+db.students.find().sort({marks:-1}).limit(3)
+
+15. Display all unique cities represented in the students collection.
+
+db.students.distinct("city")
+
+Section D
+
+16. Update Pavan's marks to 70.
+
+db.students.updateOne({name:"Pavan"},{$set:{marks:70}})
+
+17. Give 5 additional marks to all CSE students.
+
+db.students.updateMany({dept:"CSE"},{$inc:{marks:5}})
+
+18. Add "git" to the skills of all CSE students without creating duplicates.
+
+db.students.updateMany({dept:"CSE"},{$push:{skills:"git"}})
+
+19. Increase fees.total by n2,000 for all ECE students.
+
+db.students.updateMany({dept:"ECE"},{$inc:{fees:2000}})
+
+20. Delete all students whose marks are below 60. Verify the filter first.
+
+db.students.deleteMany({marks:{$lt:60}})
+
+Section E
+
+
